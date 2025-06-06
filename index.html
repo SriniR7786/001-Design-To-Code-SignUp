@@ -30,15 +30,26 @@
 			<button class="btn1">Sign Up</button>
 			</div>		
 		
-		<div class="input-area">
+		<!-- <div class="input-area">
 			<input type="text" name="email" class="input" placeholder="email">
 			<br>
 			<input type="text" name="password" class="input" placeholder="password">
-		</div>
+		</div> -->
 		
-		<div class="second_btn">
+		<form id="signupForm" class="input-area">
+  <input type="text" name="email" id="email" class="input" placeholder="email">
+  <br>
+  <input type="password" name="password" id="password" class="input" placeholder="password">
+  <div id="error-msg" style="color:red; text-align:center; font-family: Poppins; padding-bottom: -36px"></div>
+  <div class="second_btn">
+    <button type="submit" class="btn2">Sign In</button>
+  </div>
+</form>
+
+		
+	<!-- 	<div class="second_btn">
 		<button class="btn2">Sign In</button>
-		</div>
+		</div> -->
 		
 		
 			
@@ -73,6 +84,37 @@
 		
 		</div>
 	
+
+<script>
+  document.getElementById('signupForm').addEventListener('submit', function (e) {
+    e.preventDefault(); // prevent form from submitting
+
+    // Get values
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value.trim();
+    const errorMsg = document.getElementById('error-msg');
+
+    // Clear previous error
+    errorMsg.textContent = '';
+
+    // Validate email
+    const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+    if (!emailPattern.test(email)) {
+      errorMsg.textContent = 'Please enter a valid email address.';
+      return;
+    }
+
+    // Validate password length
+    if (password.length < 6) {
+      errorMsg.textContent = 'Password must be at least 6 characters long.';
+      return;
+    }
+
+    // If all good
+    alert("Form submitted successfully!");
+    // You can replace alert with actual form submission or redirection logic
+  });
+</script>
 
 
 </body>
